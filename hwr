@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <html>
+        <head>
+        <style>
+        body {
+          background-color: rgb(80, 95, 255);
+        }
+        </style>
+        </head>
+        </html>
+
+        <html>
+<head>
+<style>
+h1 {
+  border: 5px solid red;
+}
+
+h2 {
+  border: 4px dotted blue;
+}
+
+div {
+  border: double;
+}
+</style>
+</head>
+<body>
+
+<h1>How we roll</h1>
+
+
+</body>
+</html>
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .canvas{
+            background-color: rgb(69, 196, 94);
+        }
+
+    </style>
+</head>
+<body>
+    
+  <canvas id = "report" class = "canvas" width="700px" height="750px"></canvas>
+<script>
+  var canvas = document.getElementById("report");
+  var context = canvas.getContext("2d");
+
+  context.font = '14px serif';
+  context.fillStyle = "white";
+  context.fillStyle = 'black';
+  context.fillText("Early bird", 30, 50);
+  context.fillText('Work on together', 30, 100);
+  context.fillText('Tell me the back story', 30, 150);
+  context.fillText('Verbal processor', 30, 200);
+  context.fillText('Schedule a time to chat', 30, 250);
+  context.fillText('Video chat', 30, 300);
+  context.fillText('9/17 hours', 30, 350);
+
+
+
+
+  context.beginPath();
+  context.moveTo(140,50);
+  context.lineTo(540,50);
+
+  context.moveTo(140,100);
+  context.lineTo(540,100);
+
+  context.moveTo(140,150);
+  context.lineTo(540,150);
+
+  context.moveTo(140,200);
+  context.lineTo(540,200);
+
+  context.moveTo(140,250);
+  context.lineTo(540,250);
+
+  context.moveTo(140,300);
+  context.lineTo(540,300);
+
+  context.moveTo(140,350);
+  context.lineTo(540,350);
+  context.stroke();
+
+  fetch('https://bacit.info/hwr/20221029085840-8392a7adfb2bba55e7c7f1311b1fe60a.json')
+          .then(function (resp){
+            return resp.json();
+          })
+          .then (function (element){
+              console.log(element)
+
+              let resArray = Object.entries(element);
+              findMyPlace(resArray, 0);
+
+          });
+  fetch('https://bacit.info/hwr/20221029094507-3f90c0378796e229987718aafacc1620.json')
+      .then(function (resp){
+          return resp.json();
+      })
+      .then (function (element){
+          console.log(element)
+          let resArray = Object.entries(element);
+          findMyPlace(resArray,25);
+
+      });
+  fetch('https://bacit.info/hwr/20221029094641-5eb8238aa865740dce1e75a016a988a1.json')
+      .then(function (resp){
+          return resp.json();
+      })
+      .then (function (element){
+          console.log(element)
+          let resArray = Object.entries(element);
+          findMyPlace(resArray,50);
+
+      });
+  fetch('https://bacit.info/hwr/20221029100231-44fb7831003ce01eb0dbe2e58b3bdbfd.json')
+      .then(function (resp){
+          return resp.json();
+      })
+      .then (function (element){
+          console.log(element)
+          let resArray = Object.entries(element);
+          findMyPlace(resArray,75);
+
+      });
+  fetch('https://bacit.info/hwr/20221029100411-abc1dcfe11b69fa5fb87fcef768cf524.json')
+      .then(function (resp){
+          return resp.json();
+      })
+      .then (function (element){
+          console.log(element)
+          let resArray = Object.entries(element);
+          findMyPlace(resArray,100);
+
+      });
+
+    function  findMyPlace(array, num){
+        var x = 140 ;
+        var y = 50;
+        var r = 5;
+        const randColor = () =>  {
+            return "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0').toUpperCase();
+        }
+        let colorX = randColor();
+        context.fillStyle = colorX;
+        context.fillText(array[0][1], 600,25 + num);
+        context.fillText(array[1][1], 650,25 + num);
+        for (i = 2; i <= array.length-3; i++){
+            if (array[i][0] === "earlyBird"){
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y, r, 0, Math.PI*2, false);
+                context.fillStyle = colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle = colorX;
+                context.stroke();
+                context.closePath()
+            }  else if (array[i][0] === "workOnTogether"){
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y +50,r, 0, Math.PI*2, false);
+                context.fillStyle =colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle =colorX;
+                context.stroke();
+                context.closePath()
+            } else if (array[i][0] === "tellMeStory"){
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y +100,r, 0, Math.PI*2, false);
+                context.fillStyle =colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle = colorX;
+                context.stroke();
+                context.closePath()
+            } else if (array[i][0] === "processor") {
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y + 150, r, 0, Math.PI * 2, false);
+                context.fillStyle = colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle =colorX;
+                context.stroke();
+                context.closePath()
+            } else if (array[i][0] === "schedule") {
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y + 200, r, 0, Math.PI * 2, false);
+                context.fillStyle = colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle =colorX;
+                context.stroke();
+                context.closePath()
+            } else if (array[i][0] === "videoChat") {
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y + 250, r, 0, Math.PI * 2, false);
+                context.fillStyle = colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle =colorX;
+                context.stroke();
+                context.closePath()
+            } else if (array[i][0] === "noSetSchedule") {
+                let newX = ((400*parseInt(array[i][1]))/100 + 140);
+                context.beginPath()
+                context.arc(newX, y + 300, r, 0, Math.PI * 2, false);
+                context.fillStyle = colorX;
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle = colorX;
+                context.stroke();
+                context.closePath()
+            }
+        }
+    }
+
+</script>
+</body>
+</html>
